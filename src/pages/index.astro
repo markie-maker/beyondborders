@@ -1,11 +1,47 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import Section from "../layouts/Section.astro";
+import Button from "../components/Button.astro";
+import OutlinedButton from "../components/OutlinedButton.astro";
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import backgroundImage from '../assets/background.png';
+import BlogCard from "../components/BlogCard.astro";
+import { getCollection } from "astro:content";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const blogs = await getCollection('blogs')
 ---
 
 <Layout>
-	<Welcome />
+	<header class="w-full h-dvh sm:p-4">
+		<div class="relative w-full h-full rounded-md overflow-hidden">
+			<Image 
+				src={backgroundImage} 
+				alt="Hero background"
+				quality="high"
+				class="absolute inset-0 w-full h-full object-cover -z-10"
+				loading="eager"
+			/>
+
+			<div class="flex justify-center flex-col px-8 w-full h-full my-auto text-white-100">
+				<h1 class="text-5xl md:text-7xl font-bold mb-4">Insights Without Limits.</h1>
+				<p class="mb-8 max-w-xl">
+					Ditch the usual advice. We drop real hacks, new perspectives, and traveling guides.
+				</p> 
+				<div class="flex gap-x-8 gap-y-4 flex-nowrap max-sm:flex-wrap">
+					<Button href="#">Start Reading</Button>
+					<OutlinedButton href="#">Join the Newsletter</OutlinedButton>
+				</div>
+			</div>
+		</div>
+	</header>
+	
+
+	<Section>
+		<h2 class="text-5xl text-white-900 mb-2">Blogs</h2>
+		<p class="text-sm mb-8">Here, we share travel tips, destination guides, and stories to empower your next adventure.</p>
+
+		<div class="flex flex-wrap gap-4 sm:gap-6 lg:gap-8 justify-start">
+			{blogs.map(blog => <BlogCard blog={blog} />)}
+		</div>
+	</Section>
 </Layout>

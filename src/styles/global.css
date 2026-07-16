@@ -1,1 +1,17 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+    /* Color Theme */
+  --color-white-100: #F8F9FA;
+  --color-white-200: #E9ECEF;
+  --color-white-300: #DEE2E6;
+  --color-white-400: #CED4DA;
+  --color-white-500: #ADB5BD;
+  --color-white-600: #6C757D;
+  --color-white-700: #495057;
+  --color-white-800: #343A40;
+  --color-white-900: #212529;
+
+  --font-sans: "Inter", sans-serif;
+}

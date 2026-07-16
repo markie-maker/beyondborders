@@ -1,0 +1,59 @@
+---
+type sizes = 
+    'h1' |
+    'h2' |
+    'h3' |
+    'h4' |
+    'p'  |
+    'small';
+
+type colors = 
+    'white-900' | 
+    'white-800' | 
+    'white-700' | 
+    'white-600' | 
+    'white-500' | 
+    'white-400' | 
+    'white-300' | 
+    'white-200' | 
+    'white-100';
+
+interface Props {
+  size: sizes
+  color: colors
+}
+
+const { size, color } = Astro.props;
+
+const textColor = {
+    "white-100": "text-white-100",
+    "white-200": "text-white-200",
+    "white-300": "text-white-300",
+    "white-400": "text-white-400",
+    "white-500": "text-white-500",
+    "white-600": "text-white-600",
+    "white-700": "text-white-700",
+    "white-800": "text-white-800",
+    "white-900": "text-white-900"
+}
+
+const typography = {
+  h1: "text-4xl font-semibold tracking-tight text-neutral-900",
+  h2: "text-2xl font-semibold text-neutral-800",
+  h3: "text-xl font-semibold text-neutral-800",
+  h4: "text-lg font-semibold text-neutral-700",
+  p: "text-base text-neutral-600 leading-relaxed",
+  small: "text-sm text-neutral-500"
+};
+
+const typographyStyle = typography[size]
+const textStyle = textColor[color]
+
+const computedStyles = typographyStyle + ' ' + textStyle
+
+const Tag = size;
+---
+
+<Tag class={computedStyles}>
+  <slot />
+</Tag>

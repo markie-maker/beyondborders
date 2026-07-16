@@ -1,0 +1,50 @@
+---
+import { getCollection } from 'astro:content'
+import { render } from 'astro:content'
+import Layout from '../../layouts/Layout.astro'
+import Section from '../../layouts/Section.astro'
+import Header from '../../components/Header.astro'
+import Text from '../../components/Text.astro'
+
+
+export async function getStaticPaths() {
+    const blogs = await getCollection('blogs')
+
+    return blogs.map((blog) => {
+        return {
+            params: { slug: blog.id},
+            props: { blog }
+        }
+    })
+}
+
+const { blog } = Astro.props
+const { Content } = await render(blog)
+
+const formattedDate = new Intl.DateTimeFormat('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+  timeZone: 'UTC'
+}).format(blog.data.pubDate)
+
+---
+
+<Layout position="relative" classes=''>
+    <Section>
+        <Text size="h1" color="white-900">{blog.data.title}</Text>
+        <Text size="p" color="white-900">{blog.data.description}</Text>
+        <Header image={blog.data.image.src} alt={blog.data.image.alt} height={50}></Header>
+
+        <div class="blogInfo flex flex-row-full items-center">
+            <p class="text-sm text-white-900 whitespace-nowrap">{blog.data.estimatedReadTime}</p>
+            <hr class="bg-white-900 w-full mx-3 border-none h-px rounded-md">
+            <p class="text-sm text-white-900 whitespace-nowrap">{formattedDate}</p>
+        </div>
+
+        <div class="prose prose-invert max-w-none my-8 text-white-900 prose-headings:text-white-900 prose-a:text-white-900 prose-strong:text-white-900 prose-code:text-white-900  prose-blockquote:text-white-900 
+                prose-blockquote:border-l-white-800 prose-bullets:text-white-900 [&_span]:text-white-200">
+            <Content />
+        </div>
+    </Section>
+</Layout>

@@ -1,3 +1,26 @@
+---
+import "../styles/global.css";
+import MenuIcon from "../components/MenuIcon.astro";
+import Image from "astro/components/Image.astro";
+
+
+import logo from "../assets/logo.svg"
+
+interface Props {
+	position?: 'fixed' | 'sticky' | 'relative';
+	classes?: string;
+}
+
+const { position = 'fixed', classes = '' } = Astro.props;
+const navClasses = [
+	'transition delay-300 ease-in-out flex items-center sm:px-4 px-6 justify-between sm:w-[calc(100%-64px)] w-full h-16 sm:h-20 sm:top-8 sm:left-1/2 sm:-translate-x-1/2 z-50 bg-white-100 sm:rounded-xl shadow-[0px_4px_4px_0px_rgba(33,37,41,0.25)]',
+	position,
+	classes,
+]
+	.filter(Boolean)
+	.join(' ');
+
+---
 <!doctype html>
 <html lang="en">
 	<head>
@@ -6,10 +29,67 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Beyond Borders</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 	</head>
-	<body>
+	<body class="mx-0 my-0 bg-white-100">
+
+	<nav id="navbar" class={navClasses}>
+		<a href="../" id="logo" class="flex">
+			<Image src={logo} alt="logo" loading="eager"></Image>
+		</a>
+
+		<button id="menu-toggle" type="button" class="sm:hidden inline-block">
+			<MenuIcon></MenuIcon>	
+		</button>
+
+		<ul id="nav-menu" class="sm:shadow-none shadow-[0px_4px_4px_0px_rgba(33,37,41,0.25)] transition delay-300 ease-in-out hidden sm:bg-transparent bg-white-100 absolute top-full left-0 w-full sm:static sm:w-auto sm:mx-0 sm:flex flex-col sm:items-center items-start justify-center sm:flex-row">
+			<div id="nav-slider" class="  absolute top-0 left-0 bg-gray-200 rounded-sm w-28 h-12 transition-all duration-300 ease-in-out z-0 opacity-0"></div>
+
+			<li class="z-10 sm:w-auto w-full"><a href="/" data-nav-link class="sm:w-28 w-full h-12 flex items-center justify-center">Home</a></li>
+			<li class="z-10 sm:w-auto w-full"><a href="#" data-nav-link class="sm:w-28 w-full h-12 flex items-center justify-center">About</a></li>
+			<li class="z-10 sm:w-auto w-full"><a href="#" data-nav-link class="sm:w-28 w-full h-12 flex items-center justify-center">Blogs</a></li>
+		</ul>
+	</nav>
+
 		<slot />
+		<script>
+			const links = document.querySelectorAll<HTMLElement>('[data-nav-link]');
+			const slider = document.getElementById('nav-slider');
+
+			const menu = document.getElementById('nav-menu');
+			const menuToggle = document.getElementById('menu-toggle');
+
+			function positionSlider(element: HTMLElement) {
+				if (!slider) return;
+				slider.style.width = `${element.offsetWidth}px`;
+				slider.style.height = `${element.offsetHeight}px`;
+				slider.style.transform = `translate(${element.offsetLeft}px, ${element.offsetTop}px)`;
+				slider.style.opacity = '1';
+			}
+
+			links.forEach(link => {
+				link.addEventListener('mouseenter', (e) => {
+					positionSlider(e.currentTarget as HTMLElement);
+				});
+			});
+
+			document.querySelector('ul')?.addEventListener('mouseleave', () => {
+				if (slider) slider.style.opacity = '0';
+			});
+
+			menuToggle?.addEventListener('click', () => {
+				if (!menu) return;
+
+				menu.classList.toggle('hidden');
+				menu.classList.toggle('flex');
+				menu.classList.toggle('py-4');
+				menu.classList.toggle('px-6');
+			});
+		</script>
 	</body>
 </html>
 
