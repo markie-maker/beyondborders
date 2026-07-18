@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://markie-maker.github.io',
-  base: '/beyondborders/',
+  // base: '/beyondborders',
   vite: {
     plugins: [tailwindcss()]
   }
