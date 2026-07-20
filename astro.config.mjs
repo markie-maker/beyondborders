@@ -6,7 +6,6 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://markie-maker.github.io',
   base: '/beyondborders',
-  trailingSlash: "always",
   vite: {
     plugins: [tailwindcss()]
   }

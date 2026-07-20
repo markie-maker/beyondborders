@@ -4,7 +4,7 @@ description: "Follow us through hidden alleyways to find the city's ultimate lat
 pubDate: 2026-06-12
 author: "Mark Waichigo"
 image:
-  src: "tokyo-neon.jpg"
+  src: "/src/assets/blogs/tokyo-neon.jpg"
   alt: "Brightly lit neon signs and towering skyscrapers in a bustling Tokyo nightlife district."
 estimatedReadTime: "10 mins read"
 tags: ["food", "tokyo", "asia"]

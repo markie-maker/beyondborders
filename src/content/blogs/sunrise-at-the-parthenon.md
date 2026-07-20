@@ -4,7 +4,7 @@ description: "Step back in time to explore Athens' iconic crown jewel before the
 pubDate: 2026-03-05
 author: "Mark Waichigo"
 image:
-  src: "parthenon.jpg"
+  src: "/src/assets/blogs/parthenon.jpg"
   alt: "The ancient Parthenon temple in Athens standing tall against a bright sky."
 estimatedReadTime: "10 mins read"
 tags: ["travel", "history", "europe"]

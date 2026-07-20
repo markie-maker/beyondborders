@@ -4,7 +4,7 @@ description: "Conquer the best high-desert summits and catch an unforgettable de
 pubDate: 2026-10-18
 author: "Mark Waichigo"
 image:
-  src: "sedona-rocks.jpg"
+  src: "/src/assets/blogs/sedona-rocks.jpg"
   alt: "Massive red rock mountain formations in Sedona during a dramatic sunset."
 estimatedReadTime: "10 mins read"
 tags: ["hiking", "adventure", "usa"]

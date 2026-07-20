@@ -34,7 +34,7 @@ const formattedDate = new Intl.DateTimeFormat('en-US', {
     <Section>
         <Text size="h1" color="white-900">{blog.data.title}</Text>
         <Text size="p" color="white-900">{blog.data.description}</Text>
-        <Header image={blog.data.image.src} alt={blog.data.image.alt} height={50}></Header>
+        <Header imgMetadata={blog.data.image.src} alt={blog.data.image.alt} headerHeight={50}></Header>
 
         <div class="blogInfo flex flex-row-full items-center">
             <p class="text-sm text-white-900 whitespace-nowrap">{blog.data.estimatedReadTime}</p>
