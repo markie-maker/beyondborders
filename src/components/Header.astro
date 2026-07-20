@@ -11,19 +11,18 @@ interface Props {
         format: formats
     }
     alt: string
-    headerHeight: number
 }
 
-const { imgMetadata, headerHeight, alt } = Astro.props
+const { imgMetadata, alt } = Astro.props
 
 ---
 
-<header class="w-full py-4" style={`--header-height: ${headerHeight}dvh; height: var(--header-height);`}>
-    <div class="relative w-full h-full rounded-md overflow-hidden bg-white-700/20">
+<header class="w-full py-4 h-auto">
+    <div class="relative w-full sm:aspect-21/9 aspect-video rounded-md overflow-hidden bg-white-700/20">
         <Picture 
             src={imgMetadata} 
-            width={imgMetadata.height}
-            height={imgMetadata.width}
+            width={imgMetadata.width}
+            height={imgMetadata.height}
             formats={['avif', 'webp']} 
             fallbackFormat="jpg"
             alt={alt || ''}

@@ -28,7 +28,7 @@ const blogs = await getCollection('blogs')
 			<div class="flex justify-center flex-col px-8 w-full h-full my-auto text-white-100">
 				<h1 class="text-5xl md:text-7xl font-bold mb-4">Insights Without Limits.</h1>
 				<p class="mb-8 max-w-xl">
-					Bypass the ordinary. We share travel strategies, offer distinct perspectives, and offer guides that take you beyond borders.
+					Ditch the usual advice. We drop real hacks, new perspectives, and traveling guides.
 				</p> 
 				<div class="flex gap-x-8 gap-y-4 flex-nowrap max-sm:flex-wrap">
 					<Button href="#">Start Reading</Button>
@@ -41,7 +41,7 @@ const blogs = await getCollection('blogs')
 
 	<Section>
 		<h2 class="text-5xl text-white-900 mb-2">Blogs</h2>
-		<p class="text-sm mb-8">Here, we share travel tips, destination guides, and stories to empower your next adventure.</p>
+		<p class="text-sm mb-8">Here, we share travel tips, local guides, and blogs to inpire your next adventure.</p>
 
 		<div class="flex flex-wrap gap-4 sm:gap-6 lg:gap-8 justify-start">
 			{blogs.map(blog => <BlogCard blog={blog} />)}
